@@ -44,5 +44,23 @@ done
 
 #Use user input to create random age by using shuf
 age=$( shuf -i ${minAge}-${maxAge} -n 1 )
-echo $age
+echo "Random age are created!"
 
+
+while true; do
+    #Prompt the player to guess age number in the range they choose
+    read -p "Type the age number to guess in range $minAge-$maxAge: " guessAge
+    if ! [[ "$minAge" =~ $int ]]; then
+        echo "Error: Age must be an integer. Please try again!"
+    else
+        if [[ $guessAge -gt $age ]]; then
+            echo "Too high. Try again!"
+        elif [[ $guessAge -lt $age ]]; then
+            echo "Too low. Try again!"
+        else
+            echo "Correct. The age is $age years old."
+            break
+        fi
+    fi
+
+done
